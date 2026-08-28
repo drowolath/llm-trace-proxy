@@ -1,0 +1,13 @@
+.git
+.gitignore
+.dockerignore
+.env
+.python-version
+README.md
+LICENSE
+.claude
+tests
+**/__pycache__
+**/*.py[cod]
+.pytest_cache
+.venv

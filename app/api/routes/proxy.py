@@ -6,7 +6,8 @@ object so cost/tokens/latency can be exported after the response closes.
 
 import json
 import time
-from typing import Annotated, Any, AsyncGenerator, cast
+from collections.abc import AsyncGenerator
+from typing import Annotated, Any, cast
 
 import httpx
 from fastapi import APIRouter, BackgroundTasks, Depends, Request
