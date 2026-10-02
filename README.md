@@ -1,6 +1,6 @@
 # LLM-Trace-Proxy
 
-A zero-code, asynchronous HTTP reverse proxy for LLM traffic. It sits between your services and an LLM provider (OpenAI-compatible endpoints — OpenAI, Anthropic-via-compat, vLLM, Ollama), forwarding `POST /v1/chat/completions` requests unmodified while recording per-tenant cost, token usage, and latency with no change required in the calling application.
+A zero-code, asynchronous HTTP reverse proxy for LLM traffic. It sits between your services and an LLM provider (OpenAI-compatible endpoints, OpenAI, Anthropic-via-compat, vLLM, Ollama), forwarding `POST /v1/chat/completions` requests unmodified while recording per-tenant cost, token usage, and latency with no change required in the calling application.
 
 ## Features
 

@@ -1,3 +1,4 @@
+import logging
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 
@@ -10,6 +11,10 @@ from app.core.config import get_settings
 from app.core.exceptions import register_exception_handlers
 
 settings = get_settings()
+
+# Root logger has no handler by default, so app-level logger.info() calls
+# (e.g. observability trace export) would otherwise be silently dropped.
+logging.basicConfig(level=logging.INFO, format="%(message)s")
 
 
 @asynccontextmanager
