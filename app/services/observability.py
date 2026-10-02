@@ -2,6 +2,9 @@ import json
 import logging
 import time
 
+from app.core.config import get_settings
+from app.services import storage
+
 logger = logging.getLogger("llm_trace_proxy.observability")
 
 
@@ -18,8 +21,10 @@ def export_trace(
     """Emit one structured JSON trace line per proxied request.
 
     Called from a FastAPI BackgroundTask, after the response has already
-    been sent to the caller. Swap this body for a Sentry span / Betterstack
-    HTTP sink later without touching the proxy route itself.
+    been sent to the caller. Also persisted to SQLite (see app.services.storage)
+    so the CLI can report metrics without parsing these log lines. Swap the
+    logging body for a Sentry span / Betterstack HTTP sink later without
+    touching the proxy route itself.
     """
     record = {
         "timestamp": time.time(),
@@ -33,3 +38,4 @@ def export_trace(
         "streamed": streamed,
     }
     logger.info(json.dumps(record))
+    storage.insert_trace(get_settings().db_path, record)
