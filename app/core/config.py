@@ -28,6 +28,8 @@ class Settings(BaseSettings):
 
     cors_allow_origins: list[str] = Field(default_factory=lambda: ["*"])
 
+    db_path: str = Field(default="traces.db")
+
     sentry_dsn: str | None = Field(default=None)
     betterstack_source_token: str | None = Field(default=None)
 
